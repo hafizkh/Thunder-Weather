@@ -226,8 +226,13 @@ The result of the above code is given in the following scrennshot
 
 # 3. React Hooks
 
-# 4. Weather Application API
+### 1. What are React Hooke?
 
+### 2. React Hooks Demo:
+
+### 3. Building Application With React.js
+
+# 4. Weather Application API
 #### Click on the following link to view the full Application
 
 https://hafizkh.github.io/React-WeatherApi-Application/
