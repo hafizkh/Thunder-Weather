@@ -24,17 +24,17 @@ function App() {
       .then(res => res.json())
       .then(data => {
         console.log(data[0].Key);
-        
-  // To get the Weather information of the city
-        if (data[0].Key){
-          axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${data[0].Key}?apikey=${apiKey}`)
-          .then((response)=>{
-            console.log(response.data);
-          }).catch((e)=>alert(e))
-        }
 
-        })
-        setCity('')
+        // To get the Weather information of the city
+        if (data[0].Key) {
+          const url = `http://dataservice.accuweather.com/currentconditions/v1/${data[0].Key}?apikey=${apiKey}`
+          axios.get(url)
+            .then((response) => {
+              console.log(response.data);
+            }).catch((e) => alert(e))
+        }
+      })
+    setCity('')
   }
 
   return (
@@ -45,8 +45,8 @@ function App() {
           <Route exact path='/' element={<Home />} />
           <Route exact path='/home' element={<Home />} />
           <Route exact path='/about' element={<About />} />
-          <Route exact path='/weather' element={<Weather city={city} setCity={setCity}
-            getCityInfo={getCityInfo} />} />
+          <Route exact path='/weather' element={<Weather city={city}
+            setCity={setCity} getCityInfo={getCityInfo} />} />
           <Route exact path='/contact' element={<Contact />} />
           <Route exact path='/weatherCard' element={<WeatherCard cityData={cityData} setCityData={setCityData} />} />
           <Route path='/*' element={<NotFound />} />
