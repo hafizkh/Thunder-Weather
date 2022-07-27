@@ -2,9 +2,9 @@ import React from 'react'
 import { Form, Button } from "react-bootstrap"
 import WeatherCard from './WeatherCard'
 
-const Weather = ({city,setCity, getCityInfo}) => {
+const Weather = ({search,setSearch, getCityInfo, cityData}) => {
   const handleChange =(e)=>{
-    setCity(e.target.value)
+    setSearch(e.target.value)
   }
 
   return (
@@ -14,16 +14,16 @@ const Weather = ({city,setCity, getCityInfo}) => {
       <Form style={{ height: '2.4rem'}} className="d-flex mt-4" onSubmit={getCityInfo}>
         <Form.Control
           type="search"
-          placeholder="Search By City..."
+          placeholder="Search Weather By City"
           className="me-2"
           aria-label="Search"
-          value={city}
+          value={search}
           onChange={handleChange}
         />
         <Button style={{alignSelf: 'center'}} variant="outline-success" onClick={getCityInfo}>Search</Button>
       </Form>
-      
-      <WeatherCard/>
+      {cityData && <div><WeatherCard cityData={cityData}/></div>}
+
     </div>
   )
 }
