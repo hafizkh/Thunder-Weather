@@ -22,12 +22,12 @@ const WeatherCard = ({ cityData }) => {
     <>
     {data &&(
 
-      <Card style={{ borderRadius: '1rem', height: '20rem' }} className= 'mt-3'>
+      <Card className= 'mt-3'>
         <Card.Img variant="top" src={bg} style={{width: 'auto', height: 'auto'}} />
-        <Card.Body>
-          <Card.Title>{cityData.EnglishName}, {cityData.Country.EnglishName} </Card.Title>
-          <Card.Text><strong>{Math.ceil(data.Temperature.Metric.Value)} °C</strong></Card.Text>
-          <Card.Text><strong>{data.WeatherText}</strong></Card.Text>
+        <Card.Body style={{border: '2px solid'}}>
+          <Card.Title style={{fontSize: 'xx-large'}}>{cityData.EnglishName}, {cityData.Country.EnglishName} </Card.Title>
+          <Card.Text style={{fontSize: 'xx-large'}} ><strong>{Math.ceil(data.Temperature.Metric.Value)} °C</strong></Card.Text>
+          <Card.Text style={{fontSize: 'x-large'}}><strong>{data.WeatherText}</strong></Card.Text>
           
         </Card.Body>
       </Card>
