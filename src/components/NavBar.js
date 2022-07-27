@@ -13,7 +13,7 @@ const NavBar = () => {
 
     const logIn = () => {
         setisLoggedIn(true);
-        alert("Loggind Successfully")
+        alert("Loggedin Successfully")
         navigate("/weather");
 
     }
