@@ -28,7 +28,7 @@ const WeatherCard = ({ cityData }) => {
         :<Card.Img variant="top" src={night} style={{width: 'auto', height: 'auto'}} />}
         <Card.Body style={{border: '2px solid'}}>
           <Card.Title style={{fontSize: 'xx-large'}}>{cityData.EnglishName}, {cityData.Country.EnglishName} </Card.Title>
-          <Card.Text style={{fontSize: 'xx-large'}} ><strong>Temp: {Math.ceil(data.Temperature.Metric.Value)} °C</strong></Card.Text>
+          <Card.Text style={{fontSize: 'xx-large'}} ><strong>Temp: {Math.floor(data.Temperature.Metric.Value)} °C</strong></Card.Text>
           <Card.Text style={{fontSize: 'x-large'}}><strong>{data.WeatherText}</strong></Card.Text>
           
         </Card.Body>
