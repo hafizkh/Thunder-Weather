@@ -17,7 +17,7 @@ function App() {
 const apiKey = process.env.REACT_APP_API
   const getCityInfo = (event) =>{
     event.preventDefault();
-    axios.get(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=ICfOrVGI3ofdnGODMlLrRMwyPbISOCdO&q=${search}`)
+    axios.get(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${search}`)
     .then((res)=>{
       setCityData(res.data[0]);
       setSearch('');
