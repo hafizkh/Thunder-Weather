@@ -11,7 +11,7 @@ const WeatherCard = ({ cityData }) => {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API
-    const url = `http://dataservice.accuweather.com/currentconditions/v1/${cityData.Key}?apikey=${apiKey}`
+    const url = `http://dataservice.accuweather.com/currentconditions/v1/${cityData.Key}?apikey=ICfOrVGI3ofdnGODMlLrRMwyPbISOCdO`
 
     axios.get(url)
       .then((res) => {
