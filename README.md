@@ -233,8 +233,17 @@ The result of the above code is given in the following scrennshot
 ### 3. Building Application With React.js
 
 # 4. Weather Application API
-#### Click on the following link to view the full Application
 
-https://hafizkh.github.io/React-WeatherApi-Application/
+Following screen shots have been taken for reference
+
+![alt devTools](src/images/ss1.JPG)
+
+- If the time of the searched city is day, then this type of image renders
+
+![alt devTools](src/images/ss2.JPG)
+
+- If the time of the searched city is night, then this type of image renders
+
+![alt devTools](src/images/ss3.JPG)
 
 
