@@ -3,6 +3,8 @@ import axios from "axios";
 import { Card } from "react-bootstrap";
 import bg from '../images/bg_pic.jpg'
 import night from '../images/night_bg.jpg'
+import component_bg from '../images/component_bg.jpg'
+
 
 
 const WeatherCard = ({ cityData }) => {
@@ -20,6 +22,7 @@ const WeatherCard = ({ cityData }) => {
   }, [cityData.Key]);
 
   return (
+
     <>
     {value &&(
 
@@ -28,7 +31,7 @@ const WeatherCard = ({ cityData }) => {
         :<Card.Img variant="top" src={night} style={{width: 'auto', height: 'auto'}} />}
         <Card.Body style={{border: '2px solid'}}>
           <Card.Title style={{fontSize: 'xx-large'}}>{cityData.EnglishName}, {cityData.Country.EnglishName} </Card.Title>
-          <Card.Text style={{fontSize: 'xx-large'}} ><strong>Temp: {Math.floor(value.Temperature.Metric.Value)} °C</strong></Card.Text>
+          <Card.Text style={{fontSize: 'xx-large'}} ><strong>Temp: {Math.ceil(value.Temperature.Metric.Value)} °C</strong></Card.Text>
           <Card.Text style={{fontSize: 'x-large'}}><strong>{value.WeatherText}</strong></Card.Text>
           
         </Card.Body>
@@ -37,6 +40,7 @@ const WeatherCard = ({ cityData }) => {
   }
         
     </>
+
   );
 };
 

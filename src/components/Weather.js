@@ -1,6 +1,7 @@
 import React from 'react'
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Container } from "react-bootstrap"
 import WeatherCard from './WeatherCard'
+
 
 const Weather = ({search,setSearch, getCityInfo, cityData}) => {
   const handleChange =(e)=>{
@@ -8,7 +9,7 @@ const Weather = ({search,setSearch, getCityInfo, cityData}) => {
   }
 
   return (
-    <div style={{width: '25rem'}} className='container'>
+      <div style={{width: '25rem'}} className='container'>
       <h2 className='mt-2'>Thunder Weather Client</h2>
 
       <Form style={{ height: '2.4rem'}} className="d-flex mt-4" onSubmit={getCityInfo}>
@@ -22,9 +23,10 @@ const Weather = ({search,setSearch, getCityInfo, cityData}) => {
         />
         <Button style={{alignSelf: 'center'}} variant="outline-success" onClick={getCityInfo}>Search</Button>
       </Form>
-      {cityData && <div><WeatherCard cityData={cityData}/></div>}
+      {cityData && <div ><WeatherCard cityData={cityData}/></div>}
 
     </div>
+    
   )
 }
 

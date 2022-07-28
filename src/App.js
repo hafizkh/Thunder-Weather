@@ -9,6 +9,7 @@ import Weather from './components/Weather'
 import WeatherCard from './components/WeatherCard';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
+
 function App() {
 
   const [search, setSearch] = useState('');
@@ -26,7 +27,7 @@ const apiKey = process.env.REACT_APP_API
 
   return (
     <>
-    <div className='App'>
+    <div className='App' >
     <Router>
       <NavBar />
       <Routes>
