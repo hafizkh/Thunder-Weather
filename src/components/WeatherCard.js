@@ -7,7 +7,7 @@ import night from '../images/night_bg.jpg'
 
 const WeatherCard = ({ cityData }) => {
 
-  const [data, setData] = useState(null);
+  const [value, setValue] = useState(null);
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API
@@ -15,21 +15,21 @@ const WeatherCard = ({ cityData }) => {
 
     axios.get(url)
       .then((res) => {
-        setData(res.data[0]);
+        setValue(res.data[0]);
       });
   }, [cityData.Key]);
 
   return (
     <>
-    {data &&(
+    {value &&(
 
       <Card className= 'mt-3'>
-        {data.IsDayTime===true?<Card.Img variant="top" src={bg} style={{width: 'auto', height: 'auto'}} />
+        {value.IsDayTime===true?<Card.Img variant="top" src={bg} style={{width: 'auto', height: 'auto'}} />
         :<Card.Img variant="top" src={night} style={{width: 'auto', height: 'auto'}} />}
         <Card.Body style={{border: '2px solid'}}>
           <Card.Title style={{fontSize: 'xx-large'}}>{cityData.EnglishName}, {cityData.Country.EnglishName} </Card.Title>
-          <Card.Text style={{fontSize: 'xx-large'}} ><strong>Temp: {Math.floor(data.Temperature.Metric.Value)} °C</strong></Card.Text>
-          <Card.Text style={{fontSize: 'x-large'}}><strong>{data.WeatherText}</strong></Card.Text>
+          <Card.Text style={{fontSize: 'xx-large'}} ><strong>Temp: {Math.floor(value.Temperature.Metric.Value)} °C</strong></Card.Text>
+          <Card.Text style={{fontSize: 'x-large'}}><strong>{value.WeatherText}</strong></Card.Text>
           
         </Card.Body>
       </Card>
