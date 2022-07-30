@@ -21,7 +21,7 @@ const Weather = ({search,setSearch, getCityInfo, cityData}) => {
           value={search}
           onChange={handleChange}
         />
-        <Button style={{alignSelf: 'center'}} variant="outline-success" onClick={getCityInfo}>Search</Button>
+        <Button className="btn-success" onClick={getCityInfo}>Search</Button>
       </Form>
       {cityData && <div ><WeatherCard cityData={cityData}/></div>}
 
