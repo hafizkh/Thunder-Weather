@@ -12,7 +12,7 @@ const Weather = ({search,setSearch, getCityInfo, cityData}) => {
       <div style={{width: '25rem'}} className='container'>
       <h2 className='mt-2'>Thunder Weather Client</h2>
 
-      <Form style={{ height: '2.4rem'}} className="d-flex mt-4" onSubmit={getCityInfo}>
+      <Form style={{ height: '2.4rem'}} className="d-flex mt-2" onSubmit={getCityInfo}>
         <Form.Control
           type="search"
           placeholder="Search Weather By City"
