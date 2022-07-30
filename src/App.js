@@ -8,6 +8,7 @@ import NotFound from './components/NotFound'
 import Weather from './components/Weather'
 import WeatherCard from './components/WeatherCard';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Footer from './components/Footer';
 
 
 function App() {
@@ -40,7 +41,7 @@ const apiKey = process.env.REACT_APP_API
         <Route exact path='/weatherCard' element={<WeatherCard cityData={cityData} setCityData={setCityData} />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
-
+<Footer/>
     </Router>
   </div>
   </>
