@@ -24,7 +24,9 @@ const NavBar = () => {
     };
     return (
         <div>
+
             <Navbar bg="dark" variant="dark">
+            <Navbar.Collapse>
                     <Navbar.Brand as= {Link} to='/'>
                     <img  className="img-responsive" src={weather_logo} alt="Weather logo" />
                     </Navbar.Brand>
@@ -41,8 +43,9 @@ const NavBar = () => {
                             <Link className="btn btn-primary mx-2" to="/signup" role="button">Signup</Link>
                         </form> : <button style={{marginRight: '6rem'}} className="btn btn-primary" onClick={logOut}> Logout </button>}
 
-                    {/* </Navbar.Collapse> */}
+                    </Navbar.Collapse>
             </Navbar>
+
         </div>
 
     )
