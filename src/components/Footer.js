@@ -5,7 +5,7 @@ const Footer = () => {
     <>
       <footer style={{ position: 'fixed', left: 0, right: 0, bottom: 0 }} className="bg-dark text-center text-white">
         <div className="pb-0 bg-light">
-          <section style={{background: '#dfe1dc'}} className="mb-4">
+          <section style={{background: '#dfe1dc'}} >
             <a
               className="btn btn-primary btn-floating m-1"
               style={{ backgroundColor: "#3b5998" }}
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center p-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
-          © 2022 Thunder Weather: Made by Hafiz
+          © 2022 Thunder Weather | Made by Hafiz
         </div>
       </footer>
 

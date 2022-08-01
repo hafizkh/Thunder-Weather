@@ -236,7 +236,36 @@ Hooks allow functional components to get access to the state and other React fea
 - Hooks can be used only in functional components.
 - Hooks cannot be conditional, and these are not allowed to use in Class components.
 
+There are Built-in hooks in the React and some of them are given below:
+
+  - useState
+  - useEffect
+  - useReducer
+  - useContext
+  - useMemo
+  - useRef
+
 ### 2. React Hooks Demo:
+
+
+The demonstration of the Hooks can be seen in the followinf example:
+
+
+```javascript
+import React, { useState } from 'react';  
+
+const FrontendStack = ()=>{
+  const [language, setLanguage] = useState('JS)
+
+  return(
+    <>
+    <button onClick= {()=> setLanguage('TS')}> Update Language</button>
+</>
+  )
+}
+```
+
+By clicking the update, the data will be set as new language which is 'TS' in this example. There must be default value too in the initial state which is 'JS'. Once the button would be clicked, the state change from JS to TS.
 
 ### 3. Building Application With React.js
 
