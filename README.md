@@ -226,7 +226,15 @@ The result of the above code is given in the following scrennshot
 
 # 3. React Hooks
 
-### 1. What are React Hooke?
+### 1. What are React Hooks?
+
+Hooks allow functional components to get access to the state and other React features. In Class components, Hooks are no longer be used bu only functional components. In order to use Hooks, React Developer must take into account some rules which are given below:
+
+#### Rules in Hooks:
+
+- Hooks can only be called at the top level of the component
+- Hooks can be used only in functional components.
+- Hooks cannot be conditional, and these are not allowed to use in Class components.
 
 ### 2. React Hooks Demo:
 
