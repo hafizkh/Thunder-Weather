@@ -3,7 +3,7 @@
 # 1. React Basics
  ### 1. What is React.js?
 
-React is a Facebook-developed FrontEnd JavaScript Library which is widely used to make a larger application. The aim of using React is to make the Visual Interfaces simple. React allows its developers to perform CRUD tasks without reloading the page. React is being used by the companies like facebook, Netflix, Instagram, migri, canva etc.
+React is a Facebook-developed FrontEnd JavaScript Library which is widely used to make a larger application. The aim of using React is to make the Visual Interfaces simple. React allows its developers to perform CRUD tasks without reloading the page. React is being used by the companies like facebook, Netflix, Instagram, migri, canva udemy etc.
 
  ### 2. Setup tools for React App
  
