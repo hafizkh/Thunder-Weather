@@ -14,9 +14,9 @@ body {
 }
 
 .img-responsive{
-  width:8vw;
-  height:8vh;
-  border-radius:2rem;
+  width:70px;
+  height:60px;
+  border-radius:100%;
   margin-right: 2rem;
   margin-left: 6rem;
 }
