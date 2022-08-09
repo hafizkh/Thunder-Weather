@@ -33,6 +33,24 @@ const Footer = () => {
               rel="noopener noreferrer"
             ><i className="fab fa-github"></i
             ></a>
+            <a
+              className="btn btn-primary btn-floating m-1"
+              style={{ backgroundColor: "#481449" }}
+              href="https://join.slack.com/t/hafizsteam/shared_invite/zt-1e4ihmtvl-_fpoAiNQTZIviejN84GIXw"
+              role="button"
+              target="_blank"
+              rel="noopener noreferrer"
+            ><i className="fab fa-slack-hash"></i
+            ></a>
+            <a
+              className="btn btn-primary btn-floating m-1"
+              style={{ backgroundColor: "#25d366" }}
+              href="https://wa.me/+358456011488"
+              role="button"
+              target="_blank"
+              rel="noopener noreferrer"
+            ><i className="fab fa-whatsapp"></i
+            ></a>
           </section>
         </div>
 
