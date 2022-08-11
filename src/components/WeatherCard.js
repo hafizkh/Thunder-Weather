@@ -7,6 +7,7 @@ import night from '../images/night_bg.jpg'
 
 
 const WeatherCard = ({ cityData }) => {
+  
 
   const [value, setValue] = useState(null);
 

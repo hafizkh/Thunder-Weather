@@ -3,6 +3,8 @@
         "Loggedin",
         "noopener",
         "noreferrer",
-        "setis"
+        "predeploy",
+        "setis",
+        "weatherapi"
     ]
 }
