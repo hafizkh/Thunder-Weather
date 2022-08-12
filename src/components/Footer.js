@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <footer style={{ position: 'fixed', left: 0, right: 0, bottom: 0 }} className="bg-dark text-center text-white">
         <div className="pb-0 bg-light">
-          <section style={{background: '#dfe1dc'}}>
+          <section style={{ background: '#dfe1dc' }}>
             <a
               className="btn btn-primary btn-floating m-1"
               style={{ backgroundColor: "#3b5998" }}
