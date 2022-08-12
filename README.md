@@ -10,7 +10,7 @@ React is a Facebook-developed FrontEnd JavaScript Library which is widely used t
  #### The following tools required to use React Journey
  - VS Code (Code Editor to write the code)
  ##### VS Code Extensions:
-  - ThunderClient to use as testing API like Postman.
+  - RapidAPI to use as testing API like Postman.
   - ES7 React / Redux Snippets to write the code quickly as this extension provides code snippets.
   - Bracket Pair Colorizer, this extension provides the help to check the brackets by using the same color scheme of starting and ending the bracket.
   - Auto Rename Tag, This extension provides the help to change the name of the tag by changing the name of only the starting tag but ending tag changes automatically
