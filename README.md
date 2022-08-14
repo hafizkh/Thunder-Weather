@@ -267,7 +267,23 @@ const FrontendStack = ()=>{
 
 By clicking the update, the data will be set as new language which is 'TS' in this example. There must be default value too in the initial state which is 'JS'. Once the button would be clicked, the state change from JS to TS.
 
-### 3. Building Application With React.js
+### 3. Building Single Page Application(SPA) With React.js
+
+#### What is SPA?
+Single page application (SPA) are the applications which are basically do not load again and again by requesting from the client to the server. SPA loads only once and by making a new request by the user, server returns a new document but the page renders to the client side never wiped away, which behaves like a desktop application.
+
+#### Examples of SPA:
+- Gmail
+- Facebook
+- Instagram
+- Migri
+- Netflix
+  
+#### Building SPA with React.js
+
+In order to create a single page application by React, we need to use the React-Router-dom in the React project. As we know that, in the application, there are certain pages, components where we need to move one another.
+
+All the required pages and routes, which are need to render once the page changes and certainly, the right contents need to show on the page. To ensure all these changes, we should take care the URL of the pages in the App.js and To avoid loading during the routing in the pages, we replace `a` tag to `Link` tag and `#` replaces to `to` which creates the application, known as Single Page Application (SPA).
 
 # 4. Weather Application API
 

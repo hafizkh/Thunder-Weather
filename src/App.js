@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 import NavBar from './components/NavBar'
-import About from './components/About'
-import Contact from './components/Contact'
-import Home from './components/Home'
-import NotFound from './components/NotFound'
 import Weather from './components/Weather'
 import WeatherCard from './components/WeatherCard';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
