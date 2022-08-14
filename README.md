@@ -286,8 +286,6 @@ In order to create a single page application by React, we need to use the React-
 
 All the required pages and routes, which are need to render once the page changes and certainly, the right contents need to show on the page. To ensure all these changes, we should take care the URL of the pages in the App.js and To avoid loading during the routing in the pages, we replace `a` tag to `Link` tag and `#` replaces to `to` which creates the application, known as Single Page Application (SPA).
 
-### 3. Building Single Page Application With React.js
-
 
 # 4. Weather Application API
 
