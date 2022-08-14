@@ -267,7 +267,7 @@ const FrontendStack = ()=>{
 
 By clicking the update, the data will be set as new language which is 'TS' in this example. There must be default value too in the initial state which is 'JS'. Once the button would be clicked, the state change from JS to TS.
 
-### 3. Building Application With React.js
+### 3. Building Single Page Application With React.js
 
 # 4. Weather Application API
 
