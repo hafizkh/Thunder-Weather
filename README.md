@@ -4,6 +4,13 @@ Pease click on the link below to have a glance on weather app
 
 [Thunder Weather](https://thunder-weather.herokuapp.com/)
 
+##### How to use the Thunder App?
+
+- Click on the Thunder Weather
+- Once the application opens, It directs to the Home Page
+- Click on the Log in in the Header
+- Once LoggedIn alert appears, app redirects the weather page
+- Write the city name to see the weather of the respective city
 
 # React Weather API Application
 
