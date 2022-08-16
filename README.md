@@ -301,4 +301,19 @@ Following screen shots have been taken for reference
 
 ![alt devTools](src/images/ss3.JPG)
 
+### Folder Structure of the Project
+
+<pre>
+├───.vscode
+├───build
+│   └───static
+│       ├───css
+│       ├───js
+│       └───media
+├───public
+└───src
+    ├───components
+    ├───images
+    └───pages
+</pre>
 
