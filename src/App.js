@@ -9,7 +9,6 @@ import Weather from './components/Weather'
 import WeatherCard from './components/WeatherCard';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Footer from './components/Footer';
-import { Toast } from 'react-bootstrap';
 
 
 function App() {
@@ -20,11 +19,11 @@ function App() {
 const apiKey = process.env.REACT_APP_API
   const getCityInfo = (event) =>{
     event.preventDefault();
-    axios.get(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${search}`)
+    axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${search}`)
     .then((res)=>{
       setCityData(res.data[0]);
       setSearch('');
-    }).catch(e=>Toast(e));
+    }).catch(e=>alert(e));
   }
 
   return (
