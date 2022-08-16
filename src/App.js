@@ -9,6 +9,7 @@ import Weather from './components/Weather'
 import WeatherCard from './components/WeatherCard';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Footer from './components/Footer';
+import { Toast } from 'react-bootstrap';
 
 
 function App() {
@@ -23,7 +24,7 @@ const apiKey = process.env.REACT_APP_API
     .then((res)=>{
       setCityData(res.data[0]);
       setSearch('');
-    }).catch(e=>alert(e));
+    }).catch(e=>Toast(e));
   }
 
   return (
