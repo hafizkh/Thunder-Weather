@@ -1,3 +1,10 @@
+#### URL
+
+Pease click on the link below to have a glance on weather app
+
+[Thunder Weather](https://thunder-weather.herokuapp.com/)
+
+
 # React Weather API Application
 
 # 1. React Basics
