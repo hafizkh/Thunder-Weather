@@ -4,7 +4,8 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <>
-      <footer style={{ position: 'fixed', left: 0, right: 0, bottom: 0 }} className="bg-dark text-center text-white">
+      <footer style={{ position: 'fixed', left: 0, right: 0, bottom: 0 }} 
+      className="bg-dark text-center text-white">
         <div className="pb-0 bg-light">
           <section style={{ background: '#dfe1dc' }}>
             <a
@@ -56,7 +57,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center p-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
-          © {year} Thunder Weather | Made by Hafiz
+          &copy; {year} Thunder Weather | Made by Hafiz
         </div>
       </footer>
 
