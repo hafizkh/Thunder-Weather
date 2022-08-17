@@ -43,6 +43,7 @@ const apiKey = process.env.REACT_APP_API
       </Routes>
 <Footer/>
     </Router>
+    
   </div>
   </>
 

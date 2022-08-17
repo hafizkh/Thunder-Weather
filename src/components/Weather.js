@@ -2,7 +2,6 @@ import React from 'react'
 import { Form, Button } from "react-bootstrap"
 import WeatherCard from './WeatherCard'
 
-
 const Weather = ({search,setSearch, getCityInfo, cityData}) => {
   const handleChange =(e)=>{
     setSearch(e.target.value)
