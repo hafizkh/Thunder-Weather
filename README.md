@@ -1,4 +1,4 @@
-#### URL
+#### Home Page
 
 Pease click on the link below to have a glance on weather app
 
@@ -12,6 +12,10 @@ Pease click on the link below to have a glance on weather app
 - Once LoggedIn alert appears, app redirects the weather page
 - Write the city name to see the weather of the respective city
 
+### Techstack in the Application
+- React
+- Reac-Router
+- React-Bootstrap
 # React Weather API Application
 
 # 1. React Basics
