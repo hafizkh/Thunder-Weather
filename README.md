@@ -14,7 +14,7 @@ Pease click on the link below to have a glance on weather app
 
 ### Techstack in the Application
 - React
-- Reac-Router
+- React-Router
 - React-Bootstrap
 # React Weather API Application
 
