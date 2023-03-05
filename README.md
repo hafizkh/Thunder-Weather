@@ -2,7 +2,7 @@
 
 Pease click on the link below to have a glance on weather app
 
-[Thunder Weather](https://thunder-weather.herokuapp.com/)
+[Thunder Weather](https://hafizkh.github.io/home)
 
 ##### How to use the Thunder App?
 
