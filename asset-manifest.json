@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/React-WeatherApi-Application/static/css/main.ddeb499a.css",
-    "main.js": "/React-WeatherApi-Application/static/js/main.dfd32327.js",
-    "static/media/bg_pic.jpg": "/React-WeatherApi-Application/static/media/bg_pic.b8ec510c6e010fa7d9b1.jpg",
-    "static/media/404_Not_found.jpg": "/React-WeatherApi-Application/static/media/404_Not_found.6ea98444d9b2b80d15fa.jpg",
-    "static/media/night_bg.jpg": "/React-WeatherApi-Application/static/media/night_bg.46160adf43a7db4557a1.jpg",
-    "static/media/weather_logo.JPG": "/React-WeatherApi-Application/static/media/weather_logo.54f215f918d1ac8ff650.JPG",
-    "index.html": "/React-WeatherApi-Application/index.html",
-    "main.ddeb499a.css.map": "/React-WeatherApi-Application/static/css/main.ddeb499a.css.map",
-    "main.dfd32327.js.map": "/React-WeatherApi-Application/static/js/main.dfd32327.js.map"
+    "main.css": "/Thunder-Weather/static/css/main.ddeb499a.css",
+    "main.js": "/Thunder-Weather/static/js/main.6287ead9.js",
+    "static/media/bg_pic.jpg": "/Thunder-Weather/static/media/bg_pic.b8ec510c6e010fa7d9b1.jpg",
+    "static/media/404_Not_found.jpg": "/Thunder-Weather/static/media/404_Not_found.6ea98444d9b2b80d15fa.jpg",
+    "static/media/night_bg.jpg": "/Thunder-Weather/static/media/night_bg.46160adf43a7db4557a1.jpg",
+    "static/media/weather_logo.JPG": "/Thunder-Weather/static/media/weather_logo.54f215f918d1ac8ff650.JPG",
+    "index.html": "/Thunder-Weather/index.html",
+    "main.ddeb499a.css.map": "/Thunder-Weather/static/css/main.ddeb499a.css.map",
+    "main.6287ead9.js.map": "/Thunder-Weather/static/js/main.6287ead9.js.map"
   },
   "entrypoints": [
     "static/css/main.ddeb499a.css",
-    "static/js/main.dfd32327.js"
+    "static/js/main.6287ead9.js"
   ]
 }
