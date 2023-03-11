@@ -3,6 +3,7 @@ import axios from "axios";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ThunderWeather from "./pages/ThunderWeather";
 import NotFound from "./pages/NotFound";
 import NavBar from "./components/NavBar";
 import Weather from "./components/Weather";
@@ -50,6 +51,7 @@ function App() {
               }
             />
             <Route exact path="/contact" element={<Contact />} />
+            <Route exact path="/Thunder-Weather" element={<ThunderWeather />} />
             <Route
               exact
               path="/weatherCard"
