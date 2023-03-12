@@ -5,7 +5,7 @@ const ThunderWeather = () => {
     <div>
        
     <h1>Thunder-Weather</h1>
-    <h3>Please return to the Weather Card</h3>
+    <h4>Please return to the login to use Weather App</h4>
     </div>
   )
 }
