@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Thunder-Weather/static/css/main.ddeb499a.css",
-    "main.js": "/Thunder-Weather/static/js/main.54d89e8d.js",
+    "main.js": "/Thunder-Weather/static/js/main.1c9578de.js",
     "static/media/about.jpg": "/Thunder-Weather/static/media/about.bae9c1bc37064ea2d1d3.jpg",
     "static/media/bg_pic.jpg": "/Thunder-Weather/static/media/bg_pic.b8ec510c6e010fa7d9b1.jpg",
     "static/media/404_Not_found.jpg": "/Thunder-Weather/static/media/404_Not_found.6ea98444d9b2b80d15fa.jpg",
@@ -9,10 +9,10 @@
     "static/media/weather_logo.JPG": "/Thunder-Weather/static/media/weather_logo.54f215f918d1ac8ff650.JPG",
     "index.html": "/Thunder-Weather/index.html",
     "main.ddeb499a.css.map": "/Thunder-Weather/static/css/main.ddeb499a.css.map",
-    "main.54d89e8d.js.map": "/Thunder-Weather/static/js/main.54d89e8d.js.map"
+    "main.1c9578de.js.map": "/Thunder-Weather/static/js/main.1c9578de.js.map"
   },
   "entrypoints": [
     "static/css/main.ddeb499a.css",
-    "static/js/main.54d89e8d.js"
+    "static/js/main.1c9578de.js"
   ]
 }
