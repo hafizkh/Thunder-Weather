@@ -44,6 +44,12 @@ const WeatherCard = ({ cityData }) => {
             <Card.Text style={{ fontSize: "x-large" }}>
               <strong>{value.WeatherText}</strong>
             </Card.Text>
+            <Card.Text style={{ fontSize: "x-large" }}>
+              <strong>
+                Temp in Fahrenheit:{" "}
+                {Math.ceil(value.Temperature.Imperial.Value)} °F
+              </strong>
+            </Card.Text>
           </Card.Body>
         </Card>
       )}
