@@ -14,10 +14,13 @@ jobs:
         node-version: [20.x] # Adjust the Node.js versions as needed
 
     steps:
-      # - name: Set up Node.js
-      #   uses: actions/setup-node@v1
-      # with:
-      # node-version: ${{ matrix.node-version }}
+      - name: step 1
+        uses: actions/checkout@v1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies
         run: npm install
