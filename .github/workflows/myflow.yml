@@ -1,4 +1,4 @@
-name: React CII
+name: React CI
 
 on:
   push:
