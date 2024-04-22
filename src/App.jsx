@@ -16,6 +16,7 @@ function App() {
   const [cityData, setCityData] = useState(null);
 
   const apiKey = process.env.REACT_APP_API;
+  console.log("API", apiKey);
   const getCityInfo = (event) => {
     event.preventDefault();
     axios
@@ -26,9 +27,24 @@ function App() {
         setCityData(res.data[0]);
         setSearch("");
       })
-      .catch((e) => alert(e));
+      .catch((error) => {
+        if (error.response) {
+          // Request made and server responded
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          alert(`Error: ${error.response.data.message}`);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+          alert("No response received");
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+          alert("Error setting up request");
+        }
+      });
   };
-
   return (
     <>
       <div className="App">
