@@ -16,7 +16,7 @@ function App() {
   const [cityData, setCityData] = useState(null);
 
   const apiKey = process.env.REACT_APP_API;
-  console.log("API", apiKey);
+  // console.log("API", apiKey);
   const getCityInfo = (event) => {
     event.preventDefault();
     axios
