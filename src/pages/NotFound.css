@@ -1,0 +1,214 @@
+/* ============================================
+   NOT FOUND PAGE STYLES
+   ============================================ */
+
+.notfound-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.notfound-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.notfound-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(118, 75, 162, 0.15) 0%, transparent 50%);
+}
+
+.notfound-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.notfound-container {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Floating Clouds */
+.notfound-cloud {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.15);
+  filter: blur(1px);
+}
+
+.notfound-cloud-1 {
+  top: -60px;
+  left: -40px;
+}
+
+.notfound-cloud-2 {
+  top: 40px;
+  right: -30px;
+}
+
+.notfound-cloud-3 {
+  bottom: -40px;
+  left: 20%;
+}
+
+/* Content */
+.notfound-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.notfound-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 50%;
+  color: #667eea;
+  margin-bottom: 32px;
+}
+
+.notfound-title {
+  margin-bottom: 16px;
+}
+
+.notfound-404 {
+  font-size: clamp(6rem, 20vw, 10rem);
+  font-weight: 900;
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.notfound-subtitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.notfound-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  max-width: 400px;
+  margin: 0 auto 40px;
+}
+
+/* Actions */
+.notfound-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.notfound-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 14px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.notfound-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+}
+
+.notfound-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.notfound-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+}
+
+.notfound-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.notfound-back:hover {
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .notfound-page {
+    padding: 100px 20px 60px;
+  }
+
+  .notfound-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .notfound-btn-primary,
+  .notfound-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .notfound-cloud {
+    display: none;
+  }
+
+  .notfound-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .notfound-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+}
