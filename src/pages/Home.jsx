@@ -166,7 +166,7 @@ const Home = () => {
           <div className="hero-card">
             <div className="hero-card-header">
               <MapPin size={18} />
-              <span>San Francisco, CA</span>
+              <span>Helsinki, Finland</span>
             </div>
             <div className="hero-card-temp">
               <Sun size={64} className="hero-card-icon" />
