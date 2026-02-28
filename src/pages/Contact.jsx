@@ -7,7 +7,6 @@ import {
   User,
   Send,
   MapPin,
-  Phone,
   Clock,
   Github,
   Linkedin,
@@ -55,7 +54,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Helsinki, Finland',
       link: null
     },
     {
