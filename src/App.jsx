@@ -19,6 +19,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [cityData, setCityData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
+  const [forecastData, setForecastData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -48,6 +49,15 @@ function App() {
         if (weatherResponse.data && weatherResponse.data.length > 0) {
           setWeatherData(weatherResponse.data[0]);
         }
+
+        // Get 5-day forecast
+        const forecastResponse = await axios.get(
+          `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${city.Key}?apikey=${apiKey}&metric=true`
+        );
+
+        if (forecastResponse.data && forecastResponse.data.DailyForecasts) {
+          setForecastData(forecastResponse.data.DailyForecasts);
+        }
       } else {
         setError("City not found. Please try a different search.");
       }
@@ -73,6 +83,7 @@ function App() {
   const clearWeather = () => {
     setCityData(null);
     setWeatherData(null);
+    setForecastData(null);
     setSearch("");
     setError(null);
   };
@@ -124,6 +135,7 @@ function App() {
                     handleSearch={handleSearch}
                     cityData={cityData}
                     weatherData={weatherData}
+                    forecastData={forecastData}
                     loading={loading}
                     error={error}
                     clearWeather={clearWeather}

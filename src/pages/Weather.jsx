@@ -19,7 +19,9 @@ import {
   X,
   AlertCircle,
   Sunrise,
-  Sunset
+  Sunset,
+  Calendar,
+  CalendarDays
 } from 'lucide-react';
 import './Weather.css';
 
@@ -29,6 +31,7 @@ const Weather = ({
   handleSearch,
   cityData,
   weatherData,
+  forecastData,
   loading,
   error,
   clearWeather
@@ -61,6 +64,39 @@ const Weather = ({
     }
 
     return isDayTime ? <Sun {...iconProps} /> : <Moon {...iconProps} />;
+  };
+
+  const getForecastIcon = (condition, size = 40) => {
+    const iconProps = { size, className: "forecast-weather-icon" };
+
+    if (!condition) return <Cloud {...iconProps} />;
+
+    const lowerCondition = condition.toLowerCase();
+
+    if (lowerCondition.includes('thunder') || lowerCondition.includes('storm')) {
+      return <CloudLightning {...iconProps} />;
+    }
+    if (lowerCondition.includes('rain') || lowerCondition.includes('shower')) {
+      return <CloudRain {...iconProps} />;
+    }
+    if (lowerCondition.includes('snow') || lowerCondition.includes('ice')) {
+      return <CloudSnow {...iconProps} />;
+    }
+    if (lowerCondition.includes('fog') || lowerCondition.includes('mist') || lowerCondition.includes('haze')) {
+      return <CloudFog {...iconProps} />;
+    }
+    if (lowerCondition.includes('cloud') || lowerCondition.includes('overcast')) {
+      return <Cloud {...iconProps} />;
+    }
+
+    return <Sun {...iconProps} />;
+  };
+
+  const getDayName = (dateString, index) => {
+    if (index === 0) return 'Today';
+    if (index === 1) return 'Tomorrow';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { weekday: 'short' });
   };
 
   const getWeatherGradient = (condition, isDayTime) => {
@@ -345,6 +381,129 @@ const Weather = ({
                   </div>
                 </motion.div>
               </div>
+
+              {/* 5-Day Forecast Section */}
+              {forecastData && (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="weather-forecast-section"
+                >
+                  <div className="forecast-section-header">
+                    <Calendar size={24} />
+                    <h3>5-Day Forecast</h3>
+                  </div>
+
+                  <div className="forecast-cards-grid">
+                    {forecastData.map((day, index) => (
+                      <motion.div
+                        key={day.Date}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 + index * 0.1 }}
+                        whileHover={{ y: -5, scale: 1.02 }}
+                        className={`forecast-day-card ${index === 0 ? 'forecast-today' : ''}`}
+                      >
+                        <div className="forecast-day-name">{getDayName(day.Date, index)}</div>
+                        <div className="forecast-day-date">
+                          {new Date(day.Date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        </div>
+                        <div className="forecast-day-icon">
+                          {getForecastIcon(day.Day?.IconPhrase)}
+                        </div>
+                        <div className="forecast-day-temps">
+                          <span className="forecast-temp-high">{Math.round(day.Temperature?.Maximum?.Value)}°</span>
+                          <span className="forecast-temp-low">{Math.round(day.Temperature?.Minimum?.Value)}°</span>
+                        </div>
+                        <div className="forecast-day-condition">{day.Day?.IconPhrase}</div>
+                        {day.Day?.PrecipitationProbability > 0 && (
+                          <div className="forecast-day-precip">
+                            <Droplets size={14} />
+                            <span>{day.Day?.PrecipitationProbability}%</span>
+                          </div>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Monthly Calendar Overview */}
+              {forecastData && (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="weather-monthly-section"
+                >
+                  <div className="monthly-section-header">
+                    <CalendarDays size={24} />
+                    <h3>Monthly Overview</h3>
+                  </div>
+
+                  <div className="monthly-calendar">
+                    <div className="calendar-header">
+                      <span>{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+                    </div>
+                    <div className="calendar-weekdays">
+                      {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                        <div key={day} className="calendar-weekday">{day}</div>
+                      ))}
+                    </div>
+                    <div className="calendar-days">
+                      {(() => {
+                        const now = new Date();
+                        const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+                        const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+                        const startPadding = firstDay.getDay();
+                        const days = [];
+
+                        // Empty cells for padding
+                        for (let i = 0; i < startPadding; i++) {
+                          days.push(<div key={`empty-${i}`} className="calendar-day empty" />);
+                        }
+
+                        // Days of the month
+                        for (let d = 1; d <= lastDay.getDate(); d++) {
+                          const isToday = d === now.getDate();
+                          const forecastDay = forecastData.find(f => {
+                            const fDate = new Date(f.Date);
+                            return fDate.getDate() === d && fDate.getMonth() === now.getMonth();
+                          });
+
+                          days.push(
+                            <div
+                              key={d}
+                              className={`calendar-day ${isToday ? 'today' : ''} ${forecastDay ? 'has-forecast' : ''}`}
+                            >
+                              <span className="day-number">{d}</span>
+                              {forecastDay && (
+                                <div className="day-weather">
+                                  {getForecastIcon(forecastDay.Day?.IconPhrase, 16)}
+                                  <span className="day-temp">{Math.round(forecastDay.Temperature?.Maximum?.Value)}°</span>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        }
+
+                        return days;
+                      })()}
+                    </div>
+                    <div className="calendar-legend">
+                      <div className="legend-item">
+                        <div className="legend-dot today-dot" />
+                        <span>Today</span>
+                      </div>
+                      <div className="legend-item">
+                        <div className="legend-dot forecast-dot" />
+                        <span>Forecast Available</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
