@@ -31,10 +31,7 @@ const Home = () => {
   const apiKey = process.env.REACT_APP_API;
 
   useEffect(() => {
-    getUserLocationWeather();
-  }, []);
-
-  const getUserLocationWeather = () => {
+    const getUserLocationWeather = () => {
     if (!navigator.geolocation) {
       setLocationError('Geolocation is not supported');
       setLoading(false);
@@ -81,6 +78,9 @@ const Home = () => {
       { timeout: 10000, enableHighAccuracy: false }
     );
   };
+
+    getUserLocationWeather();
+  }, [apiKey]);
 
   const getWeatherIcon = (condition, isDayTime) => {
     const iconProps = { size: 64, className: "hero-card-icon" };
