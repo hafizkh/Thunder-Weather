@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 import {
   Cloud,
   Sun,
+  Moon,
   CloudRain,
+  CloudSnow,
+  CloudLightning,
+  CloudFog,
   Wind,
   Thermometer,
   MapPin,
@@ -13,11 +18,99 @@ import {
   Shield,
   Globe,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Loader2
 } from 'lucide-react';
 import './Home.css';
 
 const Home = () => {
+  const [locationWeather, setLocationWeather] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [locationError, setLocationError] = useState(null);
+
+  const apiKey = process.env.REACT_APP_API;
+
+  useEffect(() => {
+    getUserLocationWeather();
+  }, []);
+
+  const getUserLocationWeather = () => {
+    if (!navigator.geolocation) {
+      setLocationError('Geolocation is not supported');
+      setLoading(false);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          // Get location key from coordinates
+          const locationResponse = await axios.get(
+            `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${latitude},${longitude}`
+          );
+
+          if (locationResponse.data) {
+            const locationData = locationResponse.data;
+
+            // Get current weather
+            const weatherResponse = await axios.get(
+              `https://dataservice.accuweather.com/currentconditions/v1/${locationData.Key}?apikey=${apiKey}&details=true`
+            );
+
+            if (weatherResponse.data && weatherResponse.data.length > 0) {
+              setLocationWeather({
+                city: locationData.LocalizedName,
+                country: locationData.Country?.LocalizedName,
+                weather: weatherResponse.data[0]
+              });
+            }
+          }
+        } catch (error) {
+          console.error('Weather API error:', error);
+          setLocationError('Unable to fetch weather data');
+        } finally {
+          setLoading(false);
+        }
+      },
+      (error) => {
+        console.error('Geolocation error:', error);
+        setLocationError('Location access denied');
+        setLoading(false);
+      },
+      { timeout: 10000, enableHighAccuracy: false }
+    );
+  };
+
+  const getWeatherIcon = (condition, isDayTime) => {
+    const iconProps = { size: 64, className: "hero-card-icon" };
+
+    if (!condition) return <Sun {...iconProps} />;
+
+    const lowerCondition = condition.toLowerCase();
+
+    if (lowerCondition.includes('thunder') || lowerCondition.includes('storm')) {
+      return <CloudLightning {...iconProps} />;
+    }
+    if (lowerCondition.includes('rain') || lowerCondition.includes('shower')) {
+      return <CloudRain {...iconProps} />;
+    }
+    if (lowerCondition.includes('snow') || lowerCondition.includes('ice') || lowerCondition.includes('flurries')) {
+      return <CloudSnow {...iconProps} />;
+    }
+    if (lowerCondition.includes('fog') || lowerCondition.includes('mist') || lowerCondition.includes('haze')) {
+      return <CloudFog {...iconProps} />;
+    }
+    if (lowerCondition.includes('cloud') || lowerCondition.includes('overcast')) {
+      return <Cloud {...iconProps} />;
+    }
+    if (lowerCondition.includes('sun') || lowerCondition.includes('clear')) {
+      return isDayTime ? <Sun {...iconProps} /> : <Moon {...iconProps} />;
+    }
+
+    return isDayTime ? <Sun {...iconProps} /> : <Moon {...iconProps} />;
+  };
+
   const features = [
     {
       icon: Search,
@@ -137,7 +230,7 @@ const Home = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="hero-weather-types"
           >
-            {weatherTypes.map((type, index) => (
+            {weatherTypes.map((type) => (
               <motion.div
                 key={type.label}
                 className="weather-type-item"
@@ -156,7 +249,7 @@ const Home = () => {
           </motion.div>
         </div>
 
-        {/* Hero Visual */}
+        {/* Hero Visual - Live Weather Card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -164,28 +257,68 @@ const Home = () => {
           className="hero-visual"
         >
           <div className="hero-card">
-            <div className="hero-card-header">
-              <MapPin size={18} />
-              <span>Helsinki, Finland</span>
-            </div>
-            <div className="hero-card-temp">
-              <Sun size={64} className="hero-card-icon" />
-              <div className="hero-card-temp-value">
-                <span className="temp-number">24</span>
-                <span className="temp-unit">°C</span>
+            {loading ? (
+              <div className="hero-card-loading">
+                <Loader2 size={40} className="spinner" />
+                <span>Getting your location...</span>
               </div>
-            </div>
-            <div className="hero-card-condition">Sunny</div>
-            <div className="hero-card-details">
-              <div className="detail-item">
-                <Wind size={16} />
-                <span>12 km/h</span>
-              </div>
-              <div className="detail-item">
-                <Thermometer size={16} />
-                <span>Feels 26°</span>
-              </div>
-            </div>
+            ) : locationWeather ? (
+              <>
+                <div className="hero-card-header">
+                  <MapPin size={18} />
+                  <span>{locationWeather.city}, {locationWeather.country}</span>
+                </div>
+                <div className="hero-card-temp">
+                  {getWeatherIcon(locationWeather.weather.WeatherText, locationWeather.weather.IsDayTime)}
+                  <div className="hero-card-temp-value">
+                    <span className="temp-number">
+                      {Math.round(locationWeather.weather.Temperature?.Metric?.Value)}
+                    </span>
+                    <span className="temp-unit">°C</span>
+                  </div>
+                </div>
+                <div className="hero-card-condition">{locationWeather.weather.WeatherText}</div>
+                <div className="hero-card-details">
+                  <div className="detail-item">
+                    <Wind size={16} />
+                    <span>{locationWeather.weather.Wind?.Speed?.Metric?.Value || 0} km/h</span>
+                  </div>
+                  <div className="detail-item">
+                    <Thermometer size={16} />
+                    <span>Feels {Math.round(locationWeather.weather.RealFeelTemperature?.Metric?.Value || locationWeather.weather.Temperature?.Metric?.Value)}°</span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="hero-card-header">
+                  <MapPin size={18} />
+                  <span>{locationError || 'Enable location'}</span>
+                </div>
+                <div className="hero-card-temp">
+                  <Sun size={64} className="hero-card-icon" />
+                  <div className="hero-card-temp-value">
+                    <span className="temp-number">--</span>
+                    <span className="temp-unit">°C</span>
+                  </div>
+                </div>
+                <div className="hero-card-condition">
+                  <Link to="/weather" style={{ color: 'white', textDecoration: 'underline' }}>
+                    Search a city
+                  </Link>
+                </div>
+                <div className="hero-card-details">
+                  <div className="detail-item">
+                    <Wind size={16} />
+                    <span>-- km/h</span>
+                  </div>
+                  <div className="detail-item">
+                    <Thermometer size={16} />
+                    <span>Feels --°</span>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Floating Elements */}
