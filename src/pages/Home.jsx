@@ -19,12 +19,15 @@ import {
   Globe,
   ArrowRight,
   Sparkles,
-  Loader2
+  Loader2,
+  Calendar,
+  Droplets
 } from 'lucide-react';
 import './Home.css';
 
 const Home = () => {
   const [locationWeather, setLocationWeather] = useState(null);
+  const [dailyForecast, setDailyForecast] = useState(null);
   const [loading, setLoading] = useState(true);
   const [locationError, setLocationError] = useState(null);
 
@@ -32,58 +35,68 @@ const Home = () => {
 
   useEffect(() => {
     const getUserLocationWeather = () => {
-    if (!navigator.geolocation) {
-      setLocationError('Geolocation is not supported');
-      setLoading(false);
-      return;
-    }
+      if (!navigator.geolocation) {
+        setLocationError('Geolocation is not supported');
+        setLoading(false);
+        return;
+      }
 
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords;
-        try {
-          // Get location key from coordinates
-          const locationResponse = await axios.get(
-            `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${latitude},${longitude}`
-          );
-
-          if (locationResponse.data) {
-            const locationData = locationResponse.data;
-
-            // Get current weather
-            const weatherResponse = await axios.get(
-              `https://dataservice.accuweather.com/currentconditions/v1/${locationData.Key}?apikey=${apiKey}&details=true`
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            // Get location key from coordinates
+            const locationResponse = await axios.get(
+              `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${latitude},${longitude}`
             );
 
-            if (weatherResponse.data && weatherResponse.data.length > 0) {
-              setLocationWeather({
-                city: locationData.LocalizedName,
-                country: locationData.Country?.LocalizedName,
-                weather: weatherResponse.data[0]
-              });
+            if (locationResponse.data) {
+              const locationData = locationResponse.data;
+
+              // Get current weather
+              const weatherResponse = await axios.get(
+                `https://dataservice.accuweather.com/currentconditions/v1/${locationData.Key}?apikey=${apiKey}&details=true`
+              );
+
+              // Get 5-day daily forecast
+              const forecastResponse = await axios.get(
+                `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationData.Key}?apikey=${apiKey}&metric=true`
+              );
+
+              if (weatherResponse.data && weatherResponse.data.length > 0) {
+                setLocationWeather({
+                  city: locationData.LocalizedName,
+                  country: locationData.Country?.LocalizedName,
+                  weather: weatherResponse.data[0],
+                  locationKey: locationData.Key
+                });
+              }
+
+              if (forecastResponse.data && forecastResponse.data.DailyForecasts) {
+                setDailyForecast(forecastResponse.data.DailyForecasts);
+              }
             }
+          } catch (error) {
+            console.error('Weather API error:', error);
+            setLocationError('Unable to fetch weather data');
+          } finally {
+            setLoading(false);
           }
-        } catch (error) {
-          console.error('Weather API error:', error);
-          setLocationError('Unable to fetch weather data');
-        } finally {
+        },
+        (error) => {
+          console.error('Geolocation error:', error);
+          setLocationError('Location access denied');
           setLoading(false);
-        }
-      },
-      (error) => {
-        console.error('Geolocation error:', error);
-        setLocationError('Location access denied');
-        setLoading(false);
-      },
-      { timeout: 10000, enableHighAccuracy: false }
-    );
-  };
+        },
+        { timeout: 10000, enableHighAccuracy: false }
+      );
+    };
 
     getUserLocationWeather();
   }, [apiKey]);
 
-  const getWeatherIcon = (condition, isDayTime) => {
-    const iconProps = { size: 64, className: "hero-card-icon" };
+  const getWeatherIcon = (condition, isDayTime, size = 64) => {
+    const iconProps = { size, className: size === 64 ? "hero-card-icon" : "forecast-icon" };
 
     if (!condition) return <Sun {...iconProps} />;
 
@@ -105,10 +118,17 @@ const Home = () => {
       return <Cloud {...iconProps} />;
     }
     if (lowerCondition.includes('sun') || lowerCondition.includes('clear')) {
-      return isDayTime ? <Sun {...iconProps} /> : <Moon {...iconProps} />;
+      return isDayTime !== false ? <Sun {...iconProps} /> : <Moon {...iconProps} />;
     }
 
-    return isDayTime ? <Sun {...iconProps} /> : <Moon {...iconProps} />;
+    return isDayTime !== false ? <Sun {...iconProps} /> : <Moon {...iconProps} />;
+  };
+
+  const getDayName = (dateString, index) => {
+    if (index === 0) return 'Today';
+    if (index === 1) return 'Tomorrow';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { weekday: 'short' });
   };
 
   const features = [
@@ -345,6 +365,62 @@ const Home = () => {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* 5-Day Forecast Section */}
+      {dailyForecast && (
+        <section className="forecast-section">
+          <div className="forecast-container">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="forecast-header"
+            >
+              <Calendar size={28} className="forecast-header-icon" />
+              <div>
+                <h2 className="forecast-title">5-Day Forecast</h2>
+                <p className="forecast-subtitle">
+                  {locationWeather ? `${locationWeather.city}, ${locationWeather.country}` : 'Your Location'}
+                </p>
+              </div>
+            </motion.div>
+
+            <div className="forecast-grid">
+              {dailyForecast.map((day, index) => (
+                <motion.div
+                  key={day.Date}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="forecast-card"
+                >
+                  <div className="forecast-day">{getDayName(day.Date, index)}</div>
+                  <div className="forecast-date">
+                    {new Date(day.Date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </div>
+                  <div className="forecast-icon-wrapper">
+                    {getWeatherIcon(day.Day?.IconPhrase, true, 48)}
+                  </div>
+                  <div className="forecast-temps">
+                    <span className="forecast-high">{Math.round(day.Temperature?.Maximum?.Value)}°</span>
+                    <span className="forecast-low">{Math.round(day.Temperature?.Minimum?.Value)}°</span>
+                  </div>
+                  <div className="forecast-condition">{day.Day?.IconPhrase}</div>
+                  {day.Day?.PrecipitationProbability > 0 && (
+                    <div className="forecast-precip">
+                      <Droplets size={14} />
+                      <span>{day.Day?.PrecipitationProbability}%</span>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Features Section */}
       <section className="features">
