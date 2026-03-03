@@ -3,7 +3,7 @@
 
 Pease click on the link below to have a glance on weather app
 
-[Thunder Weather](https://hafizkh.github.io/Thunder-Weather/)
+[Thunder Weather](https://thunder-weather.netlify.app/)
 
 ##### How to use the Thunder App?
 
